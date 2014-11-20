@@ -7,14 +7,14 @@ var fs = require('fs');
 
 module.exports.init = function(callback) {
   var CWD = process.cwd();
-  var modelsPath = path.join(__dirname, '../api/models/');
-  var filePath = path.join(__dirname, '../scripts/sql/deleteLocations.sql');
+  var modelsPath = path.join(__dirname, '../../api/models/');
+  var filePath = path.join(__dirname, '../../scripts/sql/deleteLocations.sql');
   var orm = new Waterline();
 
   fs.readdirSync(modelsPath).forEach(function(file) {
     if (file.match(/\.js$/i)) {
       global[file] = Waterline.Collection.extend(
-        require(path.join(__dirname, '../api/models/' + file))
+        require(path.join(__dirname, '../../api/models/' + file))
       );
 
       try { orm.loadCollection(global[file]); }
