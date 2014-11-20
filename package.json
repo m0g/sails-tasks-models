@@ -1,0 +1,25 @@
+{
+  "name": "sails-tasks-models",
+  "version": "0.1.0",
+  "description": "Allows one to use Sails models within a grunt task",
+  "main": "sails-tasks-models.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m0g/sails-tasks-models"
+  },
+  "keywords": [
+    "sails",
+    "grunt",
+    "model",
+    "task"
+  ],
+  "author": "Loïc Nogues <nogues.loic@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/m0g/sails-tasks-models/issues"
+  },
+  "homepage": "https://github.com/m0g/sails-tasks-models"
+}
