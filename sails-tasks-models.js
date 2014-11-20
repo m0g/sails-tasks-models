@@ -8,7 +8,6 @@ var fs = require('fs');
 module.exports.init = function(callback) {
   var CWD = process.cwd();
   var modelsPath = path.join(__dirname, '../../api/models/');
-  var filePath = path.join(__dirname, '../../scripts/sql/deleteLocations.sql');
   var orm = new Waterline();
 
   fs.readdirSync(modelsPath).forEach(function(file) {
