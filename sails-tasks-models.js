@@ -5,11 +5,12 @@ var path = require('path');
 var Waterline = require('waterline');
 var fs = require('fs');
 
-module.exports.init = function(callback) {
-  var CWD = process.cwd();
-  var modelsPath = path.join(__dirname, '../../api/models/');
-  var orm = new Waterline();
+var CWD = process.cwd();
+var modelsPath = path.join(__dirname, '../../api/models/');
 
+var orm = new Waterline();
+
+var SailsTasksModels = function() {
   fs.readdirSync(modelsPath).forEach(function(file) {
     if (file.match(/\.js$/i)) {
       global[file] = Waterline.Collection.extend(
@@ -20,7 +21,9 @@ module.exports.init = function(callback) {
       catch(e) { console.log(e); }
     }
   });
+};
 
+SailsTasksModels.prototype.init = function(callback) {
   // initialize ORM
   orm.initialize({
     adapters: {
@@ -30,8 +33,11 @@ module.exports.init = function(callback) {
     defaults: require(path.join(CWD, 'config/models')).models
 
   }, function (err, ontology) {
+    if (err) console.log(err);
     callback(ontology);
   });
 };
+
+module.exports = SailsTasksModels;
 
 })();
