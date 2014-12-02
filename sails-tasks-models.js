@@ -7,6 +7,7 @@ var fs = require('fs');
 
 var CWD = process.cwd();
 var modelsPath = path.join(__dirname, '../../api/models/');
+var filePath = path.join(__dirname, '../../scripts/sql/deleteLocations.sql');
 
 var orm = new Waterline();
 
@@ -34,6 +35,20 @@ SailsTasksModels.prototype.init = function(callback) {
 
   }, function (err, ontology) {
     if (err) console.log(err);
+
+    else {
+      // Create global variables for each model (e.g User.findOne)
+      fs.readdirSync(modelsPath).forEach(function(file) {
+        var name = null;
+
+        if (name = file.match(/^(\w+)\.js$/i)) {
+          name = name[1];
+          var collection = name.toLowerCase();
+          global[name] = ontology.collections[collection];
+        }
+      });
+    }
+
     callback(ontology);
   });
 };
