@@ -18,7 +18,7 @@ var SailsTasksModels = function() {
         require(path.join(__dirname, '../../api/models/' + file))
       );
 
-      try { orm.loadCollection(global[file]); }
+      try { orm.registerModel(global[file]); }
       catch(e) { console.log(e); }
     }
   });
